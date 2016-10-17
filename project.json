@@ -73,8 +73,7 @@
   },
 
   "scripts": {
-    "precompile": [ "dotnet bundle" ],
-    "prepublish": [ "bower install" ],
+    "precompile": [ "npm i", "npm run webpack-once" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   },
 
