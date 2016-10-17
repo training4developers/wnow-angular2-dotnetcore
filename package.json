@@ -7,8 +7,7 @@
     "typings": "typings install",
     "clean": "rimraf wwwroot",
     "webpack": "webpack --config ./webpack.js --watch",
-    "webpack-demo": "webpack --config ./webpack.js",
-    "webpack-once": "webpack --help"
+    "webpack-once": "webpack --config ./webpack.js"
   },
   "engines":{ "node":"6.7.0" },
   "keywords": [],
