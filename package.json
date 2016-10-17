@@ -9,7 +9,7 @@
     "webpack": "webpack --config ./webpack.js --watch",
     "webpack-once": "webpack --config ./webpack.js"
   },
-  "engines":{"node":"6.x"},
+  "engines":{ "node":"6.7.0" },
   "keywords": [],
   "author": "Eric W. Greene",
   "license": "MIT",
