@@ -1,4 +1,8 @@
 	<header>Training 4 Developers, Inc. Learning Management System</header>
 	<nav></nav>
-	<main>{{message}}</main>	
+	<main>
+		<ul>
+			<li *ngFor="let student of students">{{student.firstName}} {{student.lastName}}</li>
+		</ul>	
+	</main>	
 	<footer>Copyright 2016, Training 4 Developers, Inc.</footer>
