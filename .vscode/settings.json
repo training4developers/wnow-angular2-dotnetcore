@@ -7,7 +7,7 @@
     "node_modules/": true,
 		"wwwroot/": true,
     "reports/": true,
-    ".vscode/": true,
+    ".vscode/": false,
     "typings/": true,
 		"bin/": true,
 		"obj/": true

@@ -14,6 +14,9 @@ namespace Training4Developers
     public class Startup
     {
         public Startup(IHostingEnvironment env) {
+
+            System.Diagnostics.Debug.WriteLine(env.EnvironmentName);
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -29,7 +32,7 @@ namespace Training4Developers
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetSection("ConnectionStrings").GetSection("DefaultConnection").Value;
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             services.AddMvc();
