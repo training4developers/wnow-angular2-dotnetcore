@@ -8,6 +8,7 @@ namespace Training4Developers.Data.Models
 	{
 		public int Id { get; set; }
 
+		[Column("parent_id")]
 		public int ParentId { get; set; }
 
 		public string Method { get; set; }

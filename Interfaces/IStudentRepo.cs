@@ -7,5 +7,6 @@ namespace Training4Developers.Interfaces {
 		IStudent Insert(IStudent student);
 		IStudent Update(IStudent student);
 		IStudent Delete(int studentId);
+		IStudent GetByEmailAddressAndPassword(string emailAddress, string password);
 	}
 }

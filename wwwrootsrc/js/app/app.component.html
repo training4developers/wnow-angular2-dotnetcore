@@ -1,8 +1,9 @@
 	<header>Training 4 Developers, Inc. Learning Management System</header>
 	<nav></nav>
 	<main>
-		<ul>
-			<li *ngFor="let student of students">{{student.firstName}} {{student.lastName}}</li>
-		</ul>	
+		<lms-login *ngIf="!loggedIn" (loginSuccess)="loginSuccess()"></lms-login>
+		<student-list *ngIf="loggedIn"></student-list>
+		<span ref-msg="mySpan">Some Text</span>
+		<span>{{msg | consoleLog}}</span>
 	</main>	
 	<footer>Copyright 2016, Training 4 Developers, Inc.</footer>

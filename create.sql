@@ -21,7 +21,7 @@ CREATE TABLE [dbo].[contact_info]
 	[priority] [int] NOT NULL 
 )
 
-INSERT INTO [dbo].[students] ([first_name],[last_name],[hashed_password]) values ('Bob', 'Smith', 'test');
+INSERT INTO [dbo].[students] ([first_name],[last_name],[hashed_password]) values ('Bob', 'Thomas', 'test');
 INSERT INTO [dbo].[students] ([first_name],[last_name],[hashed_password]) values ('Jane', 'Thomas', 'test');
 
 INSERT INTO [dbo].[contact_info] (parent_id, method, value, priority) values (1, 'email', 'bob@domain.com', 1);

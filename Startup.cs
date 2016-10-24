@@ -1,21 +1,22 @@
+using System.Text;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 using Training4Developers.Interfaces;
 using Training4Developers.Data;
-
+using Training4Developers.Models;
 
 namespace Training4Developers
 {
     public class Startup
     {
         public Startup(IHostingEnvironment env) {
-
-            System.Diagnostics.Debug.WriteLine(env.EnvironmentName);
 
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -36,7 +37,11 @@ namespace Training4Developers
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             services.AddMvc();
-
+            services.AddOptions();
+            services.Configure<JwtOptions>(options =>
+            {
+                options.Secret = Configuration.GetSection("JwtOptions:Secret").Value;
+            });
             services.AddScoped<IStudentRepo, StudentRepo>();
         }
 
@@ -52,6 +57,26 @@ namespace Training4Developers
             }
 
             app.UseStaticFiles();
+
+            // secretKey contains a secret passphrase only your server knows
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(
+                Configuration.GetSection("JwtOptions:Secret").Value));            
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateLifetime = false,
+                ValidateAudience = false,
+                ValidateIssuer = false,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = signingKey
+            };
+            
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                TokenValidationParameters = tokenValidationParameters
+            });            
             
             app.UseMvc(routes => {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");

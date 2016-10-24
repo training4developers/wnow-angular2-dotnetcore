@@ -23,6 +23,23 @@ namespace Training4Developers.Data
 			});
 		}
 
+		public IStudent GetByEmailAddressAndPassword(string emailAddress, string password) {
+			return _dbContext.Students.Join(
+				_dbContext.ContactInfos,
+				s => s.Id,
+				ci => ci.ParentId,
+				(s, ci) => new { Student = s, ContactInfo = ci }
+			).Where(sci =>
+				sci.ContactInfo.Method == "email" &&
+				sci.ContactInfo.Value == emailAddress &&
+				sci.Student.HashedPassword == password
+			).Select(sci => new Student {
+				Id = sci.Student.Id,
+				FirstName = sci.Student.FirstName,
+				LastName = sci.Student.LastName
+			}).SingleOrDefault();
+		}
+
 		public IStudent Get(int studentId)
 		{
 			return null;

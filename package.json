@@ -1,7 +1,6 @@
 {
   "name": "angular2-dotnetcore",
   "version": "1.0.0",
-  "description": "We've made some big updates in this release, so it’s **important** that you spend a few minutes to learn what’s new.",
   "scripts": {
     "postinstall": "npm run typings",
     "typings": "typings install",
@@ -9,12 +8,14 @@
     "webpack": "webpack --config ./webpack.js --watch",
     "webpack-once": "webpack --config ./webpack.js"
   },
-  "engines":{ "node":"6.7.0" },
+  "engines": {
+    "node": "6.7.0"
+  },
   "keywords": [],
   "author": "Eric W. Greene",
   "license": "MIT",
   "devDependencies": {
-    "copy-webpack-plugin": "^3.0.1",
+    "copy-webpack-plugin": "^4.0.0",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.3",
@@ -43,8 +44,8 @@
     "@angular/platform-browser-dynamic": "^2.0.1",
     "@angular/router": "^3.0.1",
     "angular2-in-memory-web-api": "0.0.21",
-    "bootstrap": "github:twbs/bootstrap#v4-dev",
-    "bootstrap-loader": "^1.0.10",
+    "bootstrap": "^4.0.0-alpha.5",
+    "bootstrap-loader": "^2.0.0-beta.12",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.8",
     "rxjs": "^5.0.0-rc.1",

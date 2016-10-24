@@ -1,32 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { Component, Directive, Pipe, PipeTransform } from '@angular/core';
+import { AppStorage } from './services/app-storage';
 
-interface Student {
-	id: number,
-	firstName: string,
-	lastName: string
+@Pipe({ name: 'consoleLog' })
+export class ConsoleLogPipe implements PipeTransform {
+
+	transform(value: any) {
+		console.dir(value);
+		return value;
+	}
+}
+
+@Directive({
+	selector: 'span',
+	exportAs: 'mySpan'
+})
+export class SpanDirective {
+	doIt() { }
 }
 
 @Component({
 	selector: 'web-app',
 	styles: [require('./app.component.scss')],
-	template: require('./app.component.html')
+	template: require('./app.component.html'),
+	exportAs: 'AppComponent'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-	message: string = 'Hello World!';
-	students: Student[] = [];
+	loggedIn: boolean = false;
 
-	constructor(private http: Http) {
+	constructor(private appStorage: AppStorage) { }
 
-	}
-
-	ngOnInit() {
-
-		this.http.get('students').subscribe(res => {
-			this.students = res.json();
-		});
-
+	loginSuccess() {
+		console.log('authToken: ' + this.appStorage.get('AuthToken'));
+		this.loggedIn = true;
 	}
 
 }
