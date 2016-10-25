@@ -1,8 +1,10 @@
 using Training4Developers.Interfaces;
 
-namespace Training4Developers.Models {
+namespace Training4Developers.Models
+{
 	
-	public class Widget : IWidget {
+	public class Widget : IWidget
+	{
 		
 		public int Id { get; set; }
 

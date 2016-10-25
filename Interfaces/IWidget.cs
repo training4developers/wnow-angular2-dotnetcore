@@ -1,5 +1,8 @@
-namespace Training4Developers.Interfaces { 
-	public interface IWidget {
+namespace Training4Developers.Interfaces
+{
+
+	public interface IWidget
+	{
 		
 		int Id { get; set; }
 		

@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Training4Developers.Models;
 using Training4Developers.Interfaces;
+
+using UserModel = Training4Developers.Models.User;
+using UserData = Training4Developers.Data.Models.User;
 
 namespace Training4Developers.Data
 {
+
 	public class UserRepo: IUserRepo
 	{
+
 		private readonly ApplicationDbContext _dbContext;
 
 		public UserRepo(ApplicationDbContext dbContext)
@@ -16,50 +20,98 @@ namespace Training4Developers.Data
 		}
 
 		public IEnumerable<IUser> GetAll() {
-			// return _dbContext.Users.Select(s => new Student {
-			// 	Id = s.Id,
-			// 	FirstName = s.FirstName,
-			// 	LastName = s.LastName
-			// });
-			return null;
-		}
-
-		public IUser GetByEmailAddressAndPassword(string emailAddress, string password) {
-			// return _dbContext.Students.Join(
-			// 	_dbContext.ContactInfos,
-			// 	s => s.Id,
-			// 	ci => ci.ParentId,
-			// 	(s, ci) => new { Student = s, ContactInfo = ci }
-			// ).Where(sci =>
-			// 	sci.ContactInfo.Method == "email" &&
-			// 	sci.ContactInfo.Value == emailAddress &&
-			// 	sci.Student.HashedPassword == password
-			// ).Select(sci => new Student {
-			// 	Id = sci.Student.Id,
-			// 	FirstName = sci.Student.FirstName,
-			// 	LastName = sci.Student.LastName
-			// }).SingleOrDefault();
-			return null;
+			return _dbContext.Users.Select(u => new UserModel {
+				Id = u.Id,
+				FirstName = u.FirstName,
+				LastName = u.LastName,
+				EmailAddress = u.EmailAddress,
+				HashedPassword = u.HashedPassword
+			});
 		}
 
 		public IUser Get(int userId)
 		{
-			return null;
+			return _dbContext.Users.Where(u => u.Id == userId)
+				.Select(u => new UserModel {
+					Id = u.Id,
+					FirstName = u.FirstName,
+					LastName = u.LastName,
+					EmailAddress = u.EmailAddress,
+					HashedPassword = u.HashedPassword
+				}).SingleOrDefault();
 		}
 
 		public IUser Insert(IUser user)
 		{
-			return null;
+			var newUser = new UserData {
+				FirstName = user.FirstName,
+				LastName = user.LastName,
+				EmailAddress = user.EmailAddress,
+				HashedPassword = user.HashedPassword
+			};
+
+			_dbContext.Users.Add(newUser);
+			_dbContext.SaveChanges();
+			
+			user.Id = newUser.Id;
+
+			return user;
 		}
 		
 		public IUser Update(IUser user)
 		{
-			return null;
+			var editUser = _dbContext.Users.SingleOrDefault(u => u.Id == user.Id);
+
+			if (editUser == null) {
+				return null;
+			}
+
+			editUser.FirstName = user.FirstName;
+			editUser.LastName = user.LastName;
+			editUser.EmailAddress = user.EmailAddress;
+			editUser.HashedPassword =  user.HashedPassword;
+
+			_dbContext.SaveChanges();
+
+			return user;
 		}
 		
 		public IUser Delete(int userId)
 		{
-			return null;
+			var deleteUser = _dbContext.Users.SingleOrDefault(u => u.Id == userId);
+
+			if (deleteUser == null)
+			{
+				return null;
+			}
+
+			_dbContext.Users.Remove(deleteUser);
+			_dbContext.SaveChanges();
+
+			return new UserModel {
+				Id = deleteUser.Id,
+				FirstName = deleteUser.FirstName,
+				LastName = deleteUser.LastName,
+				EmailAddress = deleteUser.EmailAddress,
+				HashedPassword = deleteUser.HashedPassword
+			};
+		}
+
+		public IUser GetByEmailAddressAndPassword(string emailAddress, string password) {
+
+			return _dbContext.Users.Where(u =>
+				u.EmailAddress == emailAddress &&
+				u.HashedPassword == password).Select(u => new UserModel {
+					FirstName = u.FirstName,
+					LastName = u.LastName,
+					EmailAddress = u.EmailAddress,
+					HashedPassword = u.HashedPassword
+				}).SingleOrDefault();
+
+		}
+
+		private string hashPassword(string password) {
+			return password;
 		}
 	}
 }

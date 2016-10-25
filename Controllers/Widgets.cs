@@ -65,36 +65,24 @@ namespace Training4Developers.Controllers
 				return NotFound();
 			}
 
-			return new NoContentResult();
+			return NoContent();
 		}		
 
 		[HttpPatch("{widgetId}")]
 		public IActionResult Update([FromBody] Widget widget, int widgetId)
 		{
-			if (widget == null || widgetId != widget.Id)
-			{
-				return BadRequest();
-			}
-
-			if (_widgetRepo.Update(widget) == null)
-			{
-				return NotFound();
-			}
-
-			return new NoContentResult();
+			return this.Update(widgetId, widget);
 		}
 
 		[HttpDelete("{widgetId}")]
 		public IActionResult Delete(int widgetId)
 		{
-			if (_widgetRepo.Get(widgetId) == null)
+			if (_widgetRepo.Delete(widgetId) == null)
 			{
 				return NotFound();
 			}
 
-			_widgetRepo.Delete(widgetId);
-
-			return new NoContentResult();
+			return NoContent();
 		}					
 	}
 }

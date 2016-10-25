@@ -1,8 +1,10 @@
 using Training4Developers.Interfaces;
 
-namespace Training4Developers.Models {
+namespace Training4Developers.Models
+{
 	
-	public class User : IUser {
+	public class User : IUser
+	{
 		
 		public int Id { get; set; }
 

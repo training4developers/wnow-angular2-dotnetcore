@@ -9,8 +9,8 @@
     "reports/": true,
     ".vscode/": true,
     "typings/": true,
-		"bin/": false,
-		"obj/": false
+		"bin/": true,
+		"obj/": true
 	},
   "editor.tabSize": 2,
 	"editor.insertSpaces": false,
