@@ -7,7 +7,7 @@ namespace Training4Developers.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<ContactInfo> ContactInfos { get; set; }
-        public DbSet<Student> Students { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Widget> Widgets { get; set; }
     }
 }

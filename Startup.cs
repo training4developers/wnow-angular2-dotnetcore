@@ -42,7 +42,8 @@ namespace Training4Developers
             {
                 options.Secret = Configuration.GetSection("JwtOptions:Secret").Value;
             });
-            services.AddScoped<IStudentRepo, StudentRepo>();
+            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IWidgetRepo, WidgetRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

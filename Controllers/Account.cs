@@ -7,32 +7,33 @@ using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+
 using Newtonsoft.Json;
 
 using Training4Developers.Interfaces;
 using Training4Developers.Models;
-using Microsoft.Extensions.Options;
 
 namespace Training4Developers.Controllers
 {
   [Route("[controller]")]
   public class AccountController : Controller
   {
-		private readonly IStudentRepo _studentRepo;
+		private readonly IUserRepo _userRepo;
     private readonly IOptions<JwtOptions> _jwtOptions;
 
-    public AccountController(IStudentRepo studentRepo, IOptions<JwtOptions> jwtOptions)
+    public AccountController(IUserRepo userRepo, IOptions<JwtOptions> jwtOptions)
     {
-			_studentRepo = studentRepo;
+			_userRepo = userRepo;
       _jwtOptions = jwtOptions;
     }
 
     [HttpPost]
     [AllowAnonymous]
 		[Route("login")]
-    public async Task<IActionResult> Get([FromBody] ApplicationUser applicationUser)
+    public async Task<IActionResult> Get([FromBody] LoginUser loginUser)
     {
-      var identity = await GetClaimsIdentity(applicationUser);
+      var identity = await GetClaimsIdentity(loginUser);
       if (identity == null)
       {
         return BadRequest("Invalid credentials");
@@ -54,19 +55,19 @@ namespace Training4Developers.Controllers
       return new OkObjectResult(JsonConvert.SerializeObject(new { accessToken = encodedJwt }));
     }
 
-    private Task<ClaimsIdentity> GetClaimsIdentity(ApplicationUser user)
+    private Task<ClaimsIdentity> GetClaimsIdentity(LoginUser loginUser)
     {
-			var student = _studentRepo.GetByEmailAddressAndPassword(user.EmailAddress, user.Password);
+			var user = _userRepo.GetByEmailAddressAndPassword(loginUser.EmailAddress, loginUser.Password);
 
-			if (student == null) {
+			if (user == null) {
 				return Task.FromResult<ClaimsIdentity>(null);
 			}
 
 			return Task.FromResult(new ClaimsIdentity(
         new GenericIdentity(user.EmailAddress, "Token"),
 				new[] {
-          new Claim("Name", student.FirstName + ' ' + student.LastName),
-          new Claim("Role", "Student")
+          new Claim("Name", user.FirstName + ' ' + user.LastName),
+          new Claim("Role", "User")
         }
       ));
     }

@@ -2,8 +2,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Training4Developers.Data.Models
 {
-	[Table("students")]
-	public class Student
+	[Table("users")]
+	public class User
 	{
 		public int Id { get; set; }
 
@@ -11,10 +11,13 @@ namespace Training4Developers.Data.Models
 		public string FirstName { get; set; }
 
 		[Column("last_name")]
-		public string LastName { get; set;}
+		public string LastName { get; set; }
+
+		[Column("email_address")]
+		public string EmailAddress { get; set; }
 
 		[Column("hashed_password")]
-		public string HashedPassword { get; set;}
+		public string HashedPassword { get; set; }
 	}
 
 }

@@ -1,5 +1,5 @@
 {
-  "name": "angular2-dotnetcore",
+  "name": "wnow-angular2-dotnetcore",
   "version": "1.0.0",
   "scripts": {
     "postinstall": "npm run typings",
