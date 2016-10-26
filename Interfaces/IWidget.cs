@@ -1,9 +1,7 @@
 namespace Training4Developers.Interfaces
 {
-
 	public interface IWidget
 	{
-		
 		int Id { get; set; }
 		
 		string Name { get; set; }

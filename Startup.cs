@@ -38,10 +38,18 @@ namespace Training4Developers
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             services.AddMvc();
             services.AddOptions();
+            
             services.Configure<JwtOptions>(options =>
             {
                 options.Secret = Configuration.GetSection("JwtOptions:Secret").Value;
             });
+            
+            // add concrete implementation for repo interfaces
+            // added for a scoped lifetime
+            // options are
+            // transient - created each time per request
+            // scoped - created each request
+            // singleton - created once
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddScoped<IWidgetRepo, WidgetRepo>();
         }
@@ -56,8 +64,6 @@ namespace Training4Developers
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseStaticFiles();
 
             // secretKey contains a secret passphrase only your server knows
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(
@@ -77,10 +83,12 @@ namespace Training4Developers
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
                 TokenValidationParameters = tokenValidationParameters
-            });            
-            
+            });
+
+            app.UseStaticFiles();
             app.UseMvc(routes => {
-                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute("spa-fallback", "{*anything}", new { controller = "Home", action = "Index" });
             });
         }
     }

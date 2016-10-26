@@ -5,20 +5,27 @@ import { FormsModule } from '@angular/forms';
 
 import '../../css/styles.scss';
 
-import { AppComponent, ConsoleLogPipe, SpanDirective } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { StudentListComponent } from './components/student-list/student-list.component';
+import { AppRouterModule } from './app.router';
+
+import { AppComponent } from './app.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { WidgetToolComponent } from './components/widget-tool/widget-tool.component';
+import { UserLoginComponent } from './components/user-login/user-login.component';
+import { WidgetListComponent } from './components/widget-list/widget-list.component';
 
 import { AppStorage } from './services/app-storage';
 import { Account } from './services/account';
 import { AuthorizedHttp } from './services/authorized-http';
-import { Students } from './services/students';
+import { Widgets } from './services/widgets';
 
 @NgModule({
-	imports: [ BrowserModule, HttpModule, FormsModule ],
-	declarations: [ AppComponent, LoginComponent, StudentListComponent, ConsoleLogPipe, SpanDirective ],
+	imports: [ BrowserModule, HttpModule, FormsModule, AppRouterModule ],
+	declarations: [
+		AppComponent, HomePageComponent, WidgetToolComponent,
+		UserLoginComponent, WidgetListComponent
+	],
 	providers: [
-		Account, AppStorage, Students,
+		Account, AppStorage, Widgets,
 	  {
 			provide: AuthorizedHttp,
 			useFactory: (appStorage: AppStorage, backend: XHRBackend, defaultOptions: RequestOptions) =>

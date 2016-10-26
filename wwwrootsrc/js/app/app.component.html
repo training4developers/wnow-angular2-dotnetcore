@@ -1,9 +1,4 @@
-	<header>Training 4 Developers, Inc. Learning Management System</header>
-	<nav></nav>
-	<main>
-		<lms-login *ngIf="!loggedIn" (loginSuccess)="loginSuccess()"></lms-login>
-		<student-list *ngIf="loggedIn"></student-list>
-		<span ref-msg="mySpan">Some Text</span>
-		<span>{{msg | consoleLog}}</span>
-	</main>	
-	<footer>Copyright 2016, Training 4 Developers, Inc.</footer>
+	<header class='row'></header>
+	<nav class='row'></nav>
+	<router-outlet class='row'></router-outlet>
+	<footer class='row'></footer>

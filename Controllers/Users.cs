@@ -8,8 +8,7 @@ using Training4Developers.Models;
 
 namespace Training4Developers.Controllers
 {
-	//[Authorize]
-	[AllowAnonymous]
+	[Authorize]
 	[Route("[controller]")]
 	public class Users : Controller
 	{

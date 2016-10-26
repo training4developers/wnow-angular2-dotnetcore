@@ -4,13 +4,13 @@ import { Account } from '../../services/account';
 import { AppStorage } from '../../services/app-storage';
 
 @Component({
-	selector: 'lms-login',
-	template: require('./login.component.html'),
-	styles: [require('./login.component.scss')]
+	selector: 'user-login',
+	template: require('./user-login.component.html'),
+	styles: [require('./user-login.component.scss')]
 })
-export class LoginComponent {
+export class UserLoginComponent {
 
-	emailAddress: string = 'bob@domain.com';
+	emailAddress: string = 'bob@localhost';
 	password: string = 'test';
 
 	@Output()

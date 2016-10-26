@@ -2,10 +2,8 @@ using System.Collections.Generic;
 
 namespace Training4Developers.Interfaces
 {
-	
 	public interface IUserRepo
-	{
-		
+	{		
 		IEnumerable<IUser> GetAll();
 		
 		IUser Get(int userId);
