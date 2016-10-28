@@ -6,13 +6,7 @@ import { WidgetListComponent } from './components/widget-list/widget-list.compon
 
 const appRoutes: Route[] = [
 	{ path: '', component: HomePageComponent },
-	{
-		path: 'widget-tool',
-		component: WidgetToolComponent,
-		children: [
-			{ path: '', component: WidgetListComponent },
-		]
-	}
+	{ path: 'widget-tool', component: WidgetToolComponent }
 ];
 
 export const AppRouterModule = RouterModule.forRoot(appRoutes, { useHash: false });	
