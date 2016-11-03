@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 
 import '../../css/styles.scss';
 
+import { DemoModule } from './demo.module';
 import { AppRouterModule } from './app.router';
 
 import { AppComponent } from './app.component';
-import { HomePageComponent } from './components/home-page/home-page.component';
+import { HomePageComponent, TestComponent, Test2Component } from './components/home-page/home-page.component';
 import { WidgetToolComponent } from './components/widget-tool/widget-tool.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { WidgetListComponent } from './components/widget-list/widget-list.component';
@@ -19,10 +20,10 @@ import { AuthorizedHttp } from './services/authorized-http';
 import { Widgets } from './services/widgets';
 
 @NgModule({
-	imports: [ BrowserModule, HttpModule, FormsModule, AppRouterModule ],
+	imports: [ BrowserModule, HttpModule, FormsModule, AppRouterModule, DemoModule ],
 	declarations: [
 		AppComponent, HomePageComponent, WidgetToolComponent,
-		UserLoginComponent, WidgetListComponent
+		UserLoginComponent, WidgetListComponent, TestComponent, Test2Component
 	],
 	providers: [
 		Account, AppStorage, Widgets,
