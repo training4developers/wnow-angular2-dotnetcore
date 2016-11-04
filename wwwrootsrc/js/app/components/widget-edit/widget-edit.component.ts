@@ -28,30 +28,36 @@ export class WidgetEditComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+
 		this.route.params.subscribe(params => {
-			if (params['widgetId']) {
-				this.widgets.get(params['widgetId']).subscribe(widget => {
-					this.widget = widget;
-				});
+
+			var widgetId = parseInt(params['widgetId']);
+
+			if (widgetId) {
+				this.widgets.get(widgetId).subscribe(widget =>
+					this.widget = widget);
 			}
 		});
+	
 	}
 
 	saveWidget(widget: Widget) {
 
-		const widgetsObservable = widget.id
-			? this.widgets.update(widget)
-			: this.widgets.insert(widget);
+		if (widget.id) {
+			this.widgets.update(widget).subscribe(() =>
+				this.router.navigateByUrl('/widget-tool'));
+		} else {
+			this.widgets.insert(widget).subscribe(() =>
+				this.router.navigateByUrl('/widget-tool'));
+		}
 
-		widgetsObservable.subscribe(() => {
-			this.router.navigateByUrl('/widget-tool');
-		});
 	}
 
 	deleteWidget(widgetId: number) {
-		this.widgets.delete(widgetId).subscribe(() => {
-			this.router.navigateByUrl('/widget-tool');
-		});
+
+		this.widgets.delete(widgetId)
+			.subscribe(() => this.router.navigateByUrl('/widget-tool'));
+
 	}
 
 	returnToList() {

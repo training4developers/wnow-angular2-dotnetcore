@@ -1,10 +1,13 @@
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Element } from '../models/element';
 
 export abstract class BaseRestClient<T extends Element> {
 
-	private readonly _headers: Headers = new Headers({ 'Content-Type': 'application/json' });
+	private readonly _headers: Headers = new Headers({
+		'Content-Type': 'application/json'
+	});
+	
 	private readonly _requestOptions: RequestOptions = new RequestOptions({
 		headers: this._headers
 	});
@@ -25,13 +28,13 @@ export abstract class BaseRestClient<T extends Element> {
 			this._requestOptions).map(res => res.json());
 	}
 
-	update(element: T): Observable<T> {
+	// only return Observable<Response> when using 204 NoContent for REST service responses
+	update(element: T): Observable<Response> {
 		return this.http.put(`/${this.elementPathSegment}/${encodeURIComponent(element.id.toString())}`,
-			JSON.stringify(element), this._requestOptions).map(res => res.json());
+			JSON.stringify(element), this._requestOptions);
 	}
 
-	delete(elementId: number): Observable<T> {
-		return this.http.delete(`/${this.elementPathSegment}/${encodeURIComponent(elementId.toString())}`)
-			.map(res => res.json());
+	delete(elementId: number): Observable<Response> {
+		return this.http.delete(`/${this.elementPathSegment}/${encodeURIComponent(elementId.toString())}`);
 	}
 }

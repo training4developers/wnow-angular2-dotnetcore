@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Training4Developers.Interfaces;
 using Training4Developers.Models;
 
+// two options for method return values
+// IActionResult + ObjectResult
+// Specific Type + Instance of Type
+
 namespace Training4Developers.Controllers
 {
 	[Authorize]
@@ -51,12 +55,14 @@ namespace Training4Developers.Controllers
 				return BadRequest();
 			}
 
-			if (_userRepo.Update(user) == null)
+			var updatedUser = _userRepo.Update(user);
+
+			if (updatedUser == null)
 			{
 				return NotFound();
 			}
 
-			return NoContent();
+			return new ObjectResult(updatedUser);
 		}
 
 		[HttpPatch("{userId}")]
@@ -67,11 +73,13 @@ namespace Training4Developers.Controllers
 		[HttpDelete("{userId}")]
 		public IActionResult Delete(int userId) {
 
-			if (_userRepo.Delete(userId) == null) {
+			var user = _userRepo.Delete(userId);
+
+			if (user == null) {
 				return NotFound();
 			}
 
-			return NoContent();
+			return new ObjectResult(user);
 		}
 	}
 }

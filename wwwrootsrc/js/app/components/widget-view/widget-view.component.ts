@@ -28,10 +28,10 @@ export class WidgetViewComponent implements OnInit {
 	}
 
 	editWidget(widgetId: number) {
-		this.router.navigateByUrl('/widget-tool/widget/${widgetId}/edit');
+		this.router.navigateByUrl(`/widget-tool/widget/${widgetId}/edit`);
 	}
 
 	returnToList() {
-		this.router.navigateByUrl('/widget-tool');
+		this.router.navigateByUrl(`/widget-tool`);
 	}
 }

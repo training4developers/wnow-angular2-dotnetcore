@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
@@ -20,9 +18,9 @@ namespace Training4Developers.Controllers
 		}
 
 		[HttpGet]
-		public IEnumerable<IWidget> Get()
+		public IActionResult Get()
 		{
-			return _widgetRepo.GetAll();
+			return new ObjectResult(_widgetRepo.GetAll());
 		}
 
 		[HttpGet("{widgetId}", Name="GetWidget")]
