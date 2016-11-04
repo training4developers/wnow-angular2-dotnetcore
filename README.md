@@ -15,9 +15,7 @@ Step 5. Run the following commands from the terminal:
 ```bash
 $ npm i
 
-$ dotnet restore
-
-$ dotnet run
+$ npm start
 ```
 
 Step 6. Open a web browser, and navigate to the URL outputted to the console window. The widget application should load. The login form will be pre-filled out. Click 'Login', then use the Widget Tool.
