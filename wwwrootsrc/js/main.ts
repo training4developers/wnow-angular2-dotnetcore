@@ -1,7 +1,7 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
 
-if (process.env['ENV'] === 'production') {
+if (String(process.env['ENV']).toLowerCase() === 'production') {
  enableProdMode();
 }
 
