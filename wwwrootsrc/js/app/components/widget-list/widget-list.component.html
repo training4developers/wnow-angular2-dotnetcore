@@ -1,3 +1,26 @@
-<ul>
-	<li *ngFor="let widget of widgetList">{{widget.name}}</li>
-</ul>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Color</th>
+			<th>Size</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let widget of widgetList">
+			<td class="align-left">{{widget.name}}</td>
+			<td class="align-center">{{widget.color}}</td>
+			<td class="align-center">{{widget.size}}</td>
+			<td class="align-center">{{widget.quantity}}</td>
+			<td class="align-right">{{widget.price | currency:'USD':true:'1.2-2'}}</td>
+			<td class="align-center">
+				<a routerLink="/widget-tool/widget/{{widget.id}}">View</a> | 
+				<a routerLink="/widget-tool/widget/{{widget.id}}/edit">Edit</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<button type="button" (click)="createWidget()">Create Widget</button>

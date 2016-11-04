@@ -1,0 +1,43 @@
+<form novalidate>
+
+	<div class="form-group">
+		<label for="widget-name">Name:</label>
+		<input type="text" id="widget-name" name="widgetName"
+			class="form-control" [(ngModel)]="widget.name">
+ 	</div>
+
+	<div class="form-group">
+		<label for="widget-description">Description:</label>
+		<input type="text" id="widget-description" name="widgetDescription"
+			class="form-control" [(ngModel)]="widget.description">
+ 	</div>
+
+	<div class="form-group">
+		<label for="widget-color">Color:</label>
+		<input type="text" id="widget-color" name="widgetColor"
+			class="form-control" [(ngModel)]="widget.color">
+ 	</div>
+
+	<div class="form-group">
+		<label for="widget-size">Size:</label>
+		<input type="text" id="widget-size" name="widgetSize"
+			class="form-control" [(ngModel)]="widget.size">
+ 	</div>
+
+	<div class="form-group">
+		<label for="widget-quantity">Quantity:</label>
+		<input type="number" id="widget-quantity" name="widgetQuantity"
+			class="form-control" [(ngModel)]="widget.quantity">
+ 	</div>
+
+	<div class="form-group">
+		<label for="widget-price">Price:</label>
+		<input type="number" id="widget-price" name="widgetPrice"
+			class="form-control" [(ngModel)]="widget.price">
+ 	</div>
+
+	 <button type="button" (click)="saveWidget(widget)">Save</button>
+	 <button type="button" (click)="deleteWidget(widget.id)" *ngIf="widget.id">Delete</button>
+	 <button type="button" (click)="returnToList()">Cancel</button>
+
+</form>

@@ -15,7 +15,6 @@ export class HomePageComponent {
 	constructor(private appStorage: AppStorage, private router: Router) { }
 
 	loginSuccess() {
-		console.log('authToken: ' + this.appStorage.get('AuthToken'));
 		this.loggedIn = true;
 		this.router.navigateByUrl('/widget-tool');
 	}

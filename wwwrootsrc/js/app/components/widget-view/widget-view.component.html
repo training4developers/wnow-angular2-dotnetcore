@@ -1,0 +1,10 @@
+<div>
+	<div>Name: {{widget?.name}}</div>
+	<div>Description: {{widget?.description}}</div>
+	<div>Color: {{widget?.color}}</div>
+	<div>Size: {{widget?.size}}</div>
+	<div>Quantity: {{widget?.quantity}}</div>
+	<div>Price: {{widget?.price}}</div>
+</div>
+<button (click)="editWidget(widget.id)">Edit</button>
+<button (click)="returnToList()">Return to List</button>

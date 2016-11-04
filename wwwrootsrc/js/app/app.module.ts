@@ -8,10 +8,14 @@ import '../../css/styles.scss';
 import { AppRouterModule } from './app.router';
 
 import { AppComponent } from './app.component';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { PageFooterComponent } from './components/page-footer/page-footer.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { WidgetToolComponent } from './components/widget-tool/widget-tool.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { WidgetListComponent } from './components/widget-list/widget-list.component';
+import { WidgetViewComponent } from './components/widget-view/widget-view.component';
+import { WidgetEditComponent } from './components/widget-edit/widget-edit.component';
 
 import { AppStorage } from './services/app-storage';
 import { Account } from './services/account';
@@ -21,8 +25,8 @@ import { Widgets } from './services/widgets';
 @NgModule({
 	imports: [ BrowserModule, HttpModule, FormsModule, AppRouterModule ],
 	declarations: [
-		AppComponent, HomePageComponent, WidgetToolComponent,
-		UserLoginComponent, WidgetListComponent
+		AppComponent, PageHeaderComponent, PageFooterComponent, HomePageComponent, UserLoginComponent,
+		WidgetToolComponent, WidgetListComponent, WidgetViewComponent, WidgetEditComponent
 	],
 	providers: [
 		Account, AppStorage, Widgets,
