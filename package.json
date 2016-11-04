@@ -2,7 +2,7 @@
   "name": "wnow-angular2-dotnetcore",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "npm run typings",
+    "postinstall": "npm run typings && npm run webpack-once",
     "typings": "typings install",
     "clean": "rimraf wwwroot",
     "webpack": "webpack --config ./webpack.js --watch",
