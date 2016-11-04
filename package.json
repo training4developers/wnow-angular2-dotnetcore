@@ -2,11 +2,12 @@
   "name": "wnow-angular2-dotnetcore",
   "version": "1.0.0",
   "scripts": {
-    "postinstall": "npm run typings && npm run webpack-once",
+    "start": "dotnet run",
+    "postinstall": "npm run typings && npm run webpack-once && dotnet restore",
     "typings": "typings install",
     "clean": "rimraf wwwroot",
-    "webpack": "webpack --config ./webpack.js --watch",
-    "webpack-once": "webpack --config ./webpack.js"
+    "webpack": "webpack --config ./webpack.config.js --watch",
+    "webpack-once": "webpack --config ./webpack.config.js"
   },
   "engines": {
     "node": "6.7.0"
