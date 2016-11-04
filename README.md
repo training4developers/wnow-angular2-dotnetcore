@@ -1,6 +1,6 @@
 # Example Angular 2 + ASP.NET Core Application
 
-# To get up an running...
+#### To get up an running...
 
 Step 1. Install Node.js (6 or later). Download from [https://nodejs.org](https://nodejs.org).
 
