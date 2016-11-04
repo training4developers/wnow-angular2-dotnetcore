@@ -1,4 +1,6 @@
-export interface User {
+import { Element } from './element';
+
+export interface User extends Element {
 
 	id: number;
 	firstName: string;

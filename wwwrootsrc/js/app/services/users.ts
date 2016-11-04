@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BaseRestClient } from './base-rest-client';
 import { AuthorizedHttp } from './authorized-http';
-import { Widget } from '../models/widget';
+import { User } from '../models/user';
 
 @Injectable()
-export class Widgets extends BaseRestClient<Widget> {
+export class Users extends BaseRestClient<User> {
 
 	constructor(http: AuthorizedHttp) {
-		super(http, 'widgets');
+		super(http, 'users');
 	}
 }

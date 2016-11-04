@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 
 import '../../css/styles.scss';
 
-import { DemoModule } from './demo.module';
 import { AppRouterModule } from './app.router';
 
 import { AppComponent } from './app.component';
@@ -20,7 +19,7 @@ import { AuthorizedHttp } from './services/authorized-http';
 import { Widgets } from './services/widgets';
 
 @NgModule({
-	imports: [ BrowserModule, HttpModule, FormsModule, AppRouterModule, DemoModule ],
+	imports: [ BrowserModule, HttpModule, FormsModule, AppRouterModule ],
 	declarations: [
 		AppComponent, HomePageComponent, WidgetToolComponent,
 		UserLoginComponent, WidgetListComponent, TestComponent, Test2Component

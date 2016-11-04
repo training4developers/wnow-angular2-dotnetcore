@@ -1,4 +1,6 @@
-export interface Widget {
+import { Element } from './element';
+
+export interface Widget extends Element {
 	id: number;
 	name: string;
 	description: string;
