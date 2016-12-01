@@ -14,15 +14,9 @@
 		"inlineSourceMap": false,
 		"suppressImplicitAnyIndexErrors": true
 	},
-	"exclude": [
-		"node_modules"
-	],
 	"filesGlob": [
 		"./src/js/**/*.ts",
 		"./typings/index.d.ts",
 		"!./node_modules/**"
-	],
-	"atom": {
-		"rewriteTsconfig": false
-	}
+	]
 }
